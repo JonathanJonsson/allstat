@@ -10,20 +10,30 @@ void main() {
   runApp(const MyApp());
 }
 
+
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.purple,
+        ).copyWith(
+          secondary: Colors.green
+        ),
+        textTheme: const TextTheme(bodyText2: TextStyle(color: Colors.purple)),
+      ),
       title: 'Welcome to Flutter',
       home: Scaffold(
         appBar: AppBar(
+
           title: const Text('Welcome to Flutter'),
         ),
         body: const Center(
-          child: Text("Hello world"),
-
+          child: Text("Hello World"),
         ),
       ),
     );
@@ -45,6 +55,7 @@ class _RandomWordsState extends State<RandomWords> {
   Widget build(BuildContext context) {
     return Scaffold(
     appBar: AppBar(
+        titleTextStyle:  TextStyle(color: Colors.green),
          title: const Text('Startup Name Generator'),
        ),
      body: ListView.builder(
@@ -58,6 +69,7 @@ class _RandomWordsState extends State<RandomWords> {
          }
          return ListTile(
             title: Text(
+
             _suggestions[index].asPascalCase,
                style: _biggerFont,
             ),
