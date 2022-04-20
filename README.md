@@ -1,6 +1,6 @@
 # allstat
 
-Log nad plot everything
+Log and plot everything
 
 ## Getting Started
 
