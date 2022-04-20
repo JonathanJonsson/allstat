@@ -3,14 +3,12 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'package:english_words/english_words.dart';
+
 
 
 void main() {
   runApp(const MyApp());
 }
-
-
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -19,67 +17,50 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.purple,
-        ).copyWith(
-          secondary: Colors.green
-        ),
-        textTheme: const TextTheme(bodyText2: TextStyle(color: Colors.purple)),
+        textTheme: const TextTheme(bodyText2: TextStyle(color: Colors.greenAccent)),
+        backgroundColor: Color.fromARGB(255, 124, 124, 124),
       ),
       title: 'Welcome to Flutter',
-      home: Scaffold(
-        appBar: AppBar(
-
-          title: const Text('Welcome to Flutter'),
-        ),
-        body: const Center(
-          child: Text("Hello World"),
+      home: const Scaffold(
+        backgroundColor: Color.fromARGB(255, 124, 124, 124),
+        body: Center(
+          child: MyButton(),
+          //Text("Button Here",
+          //style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
         ),
       ),
     );
   }
 }
 
+class MyButton extends StatelessWidget{
+  const MyButton({Key? key}) : super(key: key);
 
-class RandomWords extends StatefulWidget {
-  const RandomWords({Key? key}) : super(key: key);
-
-  @override
-  State<RandomWords> createState() => _RandomWordsState();
-}
-
-class _RandomWordsState extends State<RandomWords> {
-  final _suggestions = <WordPair>[];
-  final _biggerFont = const TextStyle(fontSize: 18.0);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-    appBar: AppBar(
-        titleTextStyle:  TextStyle(color: Colors.green),
-         title: const Text('Startup Name Generator'),
-       ),
-     body: ListView.builder(
-        padding: const EdgeInsets.all(16.0),
-        itemBuilder: /*1*/ (context, i) {
-         if (i.isOdd) return const Divider(); /*2*/
-
-           final index = i ~/ 2; /*3*/
-           if (index >= _suggestions.length) {
-        _suggestions.addAll(generateWordPairs().take(10)); /*4*/
-         }
-         return ListTile(
-            title: Text(
-
-            _suggestions[index].asPascalCase,
-               style: _biggerFont,
-            ),
-         );
-         },
+    return GestureDetector(
+      onTap: () {
+        print("My button was tapped");
+      },
+      child: Container(
+        height: 50,
+        padding: const EdgeInsets.all(8),
+        margin: const EdgeInsets.symmetric(horizontal: 8),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+          color: Colors.greenAccent,
+        ),
+      child: const Center(
+        child: Text("Click",
+        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black)
+        ),
       ),
-     );
-
-    final wordPair = WordPair.random();
-
-    return Text(wordPair.asPascalCase);
+      ),
+    );
   }
+
 }
+
+
+
+
