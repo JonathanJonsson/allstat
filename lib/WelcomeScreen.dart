@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 
+import 'package:allstat/MainPage.dart';
 import 'package:flutter/material.dart';
 
 import 'NavButton.dart';
@@ -29,10 +30,39 @@ class WelcomeScreen extends StatelessWidget {
       home: const Scaffold(
         backgroundColor: Color.fromARGB(255, 124, 124, 124),
         body: Center(
-          child: MyButton(),
+          child: WelcomeButton(),
         ),
       ),
     );
+  }
+}
+
+class WelcomeButton extends StatelessWidget {
+  const WelcomeButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+
+    return GestureDetector(
+      onTap: () {
+        print("My button was tapped");
+      },
+      child: ElevatedButton(
+        style: ButtonStyle (
+            foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+            backgroundColor: MaterialStateProperty.all<Color>(Colors.greenAccent)
+        ),
+        onPressed: () {
+          Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const MainPage()),
+            );
+          //Navigate to new screen here
+        },
+        child: const Text("Welcome!"),
+      ),
+    );
+
+
   }
 }
 
